@@ -27,6 +27,7 @@ stringData:
   username: <username to connect as>
   password: <password to connect with>
   sslmode: prefer
+  target_session_attrs: any
   type: unmanaged
 type: Opaque
 ```
@@ -35,7 +36,10 @@ type: Opaque
 
 > It is possible to set a specific username, password, port, or database, but still have the database managed by the operator. In this case, when creating the postgres-configuration secret, the `type: managed` field should be added.
 
-**Note**: The variable `sslmode` is valid for `external` databases only. The allowed values are: `prefer`, `disable`, `allow`, `require`, `verify-ca`, `verify-full`.
+**Note**: The variables `sslmode` and `target_session_attrs` are valid for `external` databases only.
+
+- `sslmode` allowed values are: `prefer`, `disable`, `allow`, `require`, `verify-ca`, `verify-full`.
+- `target_session_attrs` allowed values are: `any`, `read-write`, `read-only`, `primary`, `standby`, `prefer-standby`.
 
 Once the secret is created, you can specify it on your spec:
 
